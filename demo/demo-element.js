@@ -1,6 +1,10 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import '@mpachnis/mp-calendar/mp-calendar.js';
 import '@polymer/iron-icons/iron-icons.js';
-import '../icon-toggle.js';
+import '@vaadin/vaadin-grid/vaadin-grid.js';
+import '@vaadin/vaadin-grid/vaadin-grid-selection-column.js';
+import '@vaadin/vaadin-grid/vaadin-grid-sort-column.js';
+
 
 class DemoElement extends PolymerElement {
   static get template() {
@@ -10,25 +14,42 @@ class DemoElement extends PolymerElement {
           font-family: sans-serif;
         }
       </style>
-      
-      <h3>Statically-configured icon-toggles</h3>
-      <icon-toggle toggle-icon="star"></icon-toggle>
-      <icon-toggle toggle-icon="star" pressed></icon-toggle>
-        
-      <h3>Data-bound icon-toggle</h3>
-      <!-- use a computed binding to generate the message -->
-      <div><span>[[_message(isFav)]]</span></div>
-      <!-- curly brackets ({{}}} allow two-way binding --> 
-      <icon-toggle toggle-icon="favorite" pressed="{{isFav}}"></icon-toggle>
+      <vaadin-grid id="my-grid" theme="row-dividers" column-reordering-allowed multi-sort>
+             <vaadin-grid-selection-column auto-select frozen></vaadin-grid-selection-column>
+             <vaadin-grid-sort-column width="9em" path="content"></vaadin-grid-sort-column>
+             <vaadin-grid-sort-column width="9em" path="date"></vaadin-grid-sort-column>
+      </vaadin-grid>
+      <mp-calendar events-file="data.json" ></mp-caledanr>
+
+
     `;
   }
-  _message(fav) {
-    if (fav) {
-      return 'You really like me!';
-    } 
-    else {
-      return 'Do you like me?';
+    ready() {
+     super.ready();
+     var grid = this.shadowRoot.getElementById('my-grid');
+     
+     grid.addEventListener('click', this.handleClick);
+     
+     var json = fetch('data.json')
+      .then(response => response.json())
+      .then(json => grid.items = json)
+      .then(json => console.log(json));
+        
+     grid.addEventListener('active-item-changed', function(event) {
+     const item = event.detail.value;
+     grid.selectedItems = item ? [item] : [];});
+     console.log(grid.selectedItems);
     }
-  }
+        
+    handleClick() {
+        console.log("Something selected");
+
+    }
+    
+    
+    constructor() {
+      super();
+
+    }
 }
 customElements.define('demo-element', DemoElement);

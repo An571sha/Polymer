@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Reminder",
+        "content": "Skype call at 15:40",
+        "date": "2019-12-03",
+        "category": "red",
+        "color": "#d60000"
+    },
+    {
+        "title": "Reminder",
+        "content": "Just a reminder",
+        "date": "2019-13-05",
+        "category": "orange"
+    },
+    {
+        "title": "Reminder",
+        "content": "Another reminder",
+        "date": "2019-12-10",
+        "category": "green"
+    },
+    {
+        "title": "Reminder",
+        "content": "Doctor's appointment at 20:00",
+        "date": "2019-12-18",
+        "category": "blue",
+        "color": "#1386c9"
+    },
+    {
+        "title": "Reminder",
+        "content": "Make a call",
+        "date": "2019-12-21",
+        "category": "blue",
+        "color": "#1386c9"
+    },
+    {
+        "title": "Reminder",
+        "content": "Meeting at 20:00",
+        "date": "2019-12-20",
+        "category": "red",
+        "color": "#d60000"
+    },
+    {
+        "title": "Reminder",
+        "content": "Canceled: Scrum meeting",
+        "date": "2019-12-30",
+        "category": "orange",
+        "color": "#f5a739"
+    },
+    {
+        "title": "Reminder",
+        "content": "Schedule skype call",
+        "date": "2019-12-27",
+        "category": "orange",
+        "color": "#f5a739"
+    }
+]
